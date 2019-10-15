@@ -2,21 +2,24 @@ package java.person;
 
 import java.course.CourseMenu;
 import java.enums.CourseLevelType;
+import java.enums.UserType;
+import java.factory.CourseFactory;
 
 public class Student extends Person {
 
-    public Student(CourseMenu courseMenu) {
-        super(courseMenu);
-    }
-
     @Override
     public void showMenu() {
-
+        showViewButton();
+        showRadioButton();
+        showComBoxes();
+        showLabels();
     }
 
     @Override
-    public void createCourseMenu(CourseLevelType courseLevelType) {
-
+    public CourseMenu createCourseMenu(CourseLevelType courseLevelType) {
+        CourseMenu courseMenu = new CourseFactory().getCourseMenu(UserType.STUDENT, courseLevelType);
+        updateCourseLevel(courseMenu);
+        return courseMenu;
     }
 
 }

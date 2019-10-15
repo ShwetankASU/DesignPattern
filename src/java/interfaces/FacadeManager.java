@@ -1,11 +1,10 @@
 package java.interfaces;
 
-import java.course.Course;
 import java.person.UserInfoItem;
 
 public interface FacadeManager {
 
-    boolean login();
+    boolean login(String userName, String password);
     void addAssignment();
     void viewAssignment();
     void gradeSolution();
@@ -15,6 +14,6 @@ public interface FacadeManager {
     void createUser(UserInfoItem userInfoItem);
     void createCourseList();
     void attachCourseToUser();
-    Course selectCourse();
+    void selectCourse();
     void courseOperation();
 }

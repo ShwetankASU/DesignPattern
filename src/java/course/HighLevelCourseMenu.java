@@ -18,7 +18,17 @@ public class HighLevelCourseMenu extends CourseMenu {
     }
 
     @Override
+    public void showComBoxes() {
+
+    }
+
+    @Override
     public void showLabels() {
+
+    }
+
+    @Override
+    public void showMenu() {
 
     }
 

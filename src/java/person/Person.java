@@ -2,31 +2,42 @@ package java.person;
 
 import java.course.CourseMenu;
 import java.enums.CourseLevelType;
+import java.util.ArrayList;
 
 public abstract class Person {
 
     private CourseMenu mCourseMenu;
+    public ArrayList courseList = new ArrayList();
 
-    public Person(CourseMenu mCourseMenu) {
-        this.mCourseMenu = mCourseMenu;
-    }
-
-    public void showAddButton(){
+    Person() {
 
     }
 
-    public void showViewButton(){
-
+    void showAddButton() {
+        mCourseMenu.showAddButton();
     }
 
-    public void showRadioButton(){
-
+    void showViewButton() {
+        mCourseMenu.showViewButton();
     }
 
-    public void showLabels(){
+    void showRadioButton() {
+        mCourseMenu.showRadioButton();
+    }
 
+    void showLabels() {
+        mCourseMenu.showLabels();
+    }
+
+    void showComBoxes() {
+        mCourseMenu.showComBoxes();
+    }
+
+    void updateCourseLevel(CourseMenu courseMenu) {
+        this.mCourseMenu = courseMenu;
     }
 
     public abstract void showMenu();
-    public abstract void createCourseMenu(CourseLevelType courseLevelType);
+
+    public abstract CourseMenu createCourseMenu(CourseLevelType courseLevelType);
 }
