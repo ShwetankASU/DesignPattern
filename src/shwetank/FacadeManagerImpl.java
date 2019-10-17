@@ -25,7 +25,7 @@ public class FacadeManagerImpl implements FacadeManager {
     private CourseLevelType courseLevelType;
     private List courseList = new ArrayList(0);
     private Person person;
-    Login login;
+    private Login login;
 
     private FacadeManagerImpl (){
     }
@@ -37,7 +37,14 @@ public class FacadeManagerImpl implements FacadeManager {
     @Override
     public boolean login(String userName, String password) {
         login = new Login(DatabaseManagerImpl.getInstance());
-        return login.verifyUser(userName, password);
+
+        DatabaseManagerImpl.User user = login.verifyUser(userName, password);
+        if(user == null){
+            return false;
+        }
+        userType = user.getUserType();
+        person = new PersonFactory().getPerson(userType);
+        return true;
     }
 
     @Override
@@ -47,11 +54,11 @@ public class FacadeManagerImpl implements FacadeManager {
             a.setAssignmentText("New Assignment Text");
             selectedCourse.setAssignment(a);
         }
-
         //either call teacher of student AssignmentMenu according to the user type
         //Not sure how and when this will be used
         AssignmentMenuFactory assignmentMenuFactory = new AssignmentMenuFactory();
         AssignmentMenu assignmentMenu = assignmentMenuFactory.getAssignmentMenu(userType);
+        assignmentMenu.showAssignmentMenu();
     }
 
     @Override
@@ -88,7 +95,9 @@ public class FacadeManagerImpl implements FacadeManager {
 
     @Override
     public void viewAssignment() {
-
+        AssignmentMenuFactory assignmentMenuFactory = new AssignmentMenuFactory();
+        AssignmentMenu assignmentMenu = assignmentMenuFactory.getAssignmentMenu(userType);
+        assignmentMenu.viewAssignment();
     }
 
     @Override

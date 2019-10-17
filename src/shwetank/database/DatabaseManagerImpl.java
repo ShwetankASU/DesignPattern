@@ -13,8 +13,8 @@ import java.util.Map;
 public class DatabaseManagerImpl implements DatabaseManager {
 
     private static DatabaseManager mDatabaseManager;
-    Map<String, User> userMap = new HashMap<>();
-    List<Course> courseList = new ArrayList<>();
+    private Map<String, User> userMap = new HashMap<>();
+    private List<Course> courseList = new ArrayList<>();
 
     private DatabaseManagerImpl(){
         userMap.put("pepe", new User(UserType.STUDENT, "1111"));
@@ -35,8 +35,12 @@ public class DatabaseManagerImpl implements DatabaseManager {
     }
 
     @Override
-    public boolean verifyUser(String userName, String password) {
-        return userMap.containsKey(userName) && userMap.get(userName).getPassword().equals(password);
+    public User verifyUser(String userName, String password) {
+        if(userMap.containsKey(userName) && userMap.get(userName).getPassword().equals(password)){
+            return userMap.get(userName);
+        }else{
+            return null;
+        }
     }
 
     @Override
@@ -54,7 +58,7 @@ public class DatabaseManagerImpl implements DatabaseManager {
         return courseList;
     }
 
-    static class User{
+    public static class User{
         private UserType userType;
         private String password;
 

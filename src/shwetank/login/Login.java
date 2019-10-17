@@ -1,6 +1,7 @@
 package shwetank.login;
 
 import shwetank.database.DatabaseManager;
+import shwetank.database.DatabaseManagerImpl;
 
 public class Login {
 
@@ -9,7 +10,7 @@ public class Login {
     public Login(DatabaseManager databaseManager){
         this.databaseManager = databaseManager;
     }
-    public boolean verifyUser(String userName, String password) {
+    public DatabaseManagerImpl.User verifyUser(String userName, String password) {
         return databaseManager.verifyUser(userName, password);
     }
 }

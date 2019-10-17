@@ -3,6 +3,7 @@ package shwetank.course;
 import shwetank.assignment.Assignment;
 import shwetank.enums.CourseLevelType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Course {
@@ -11,6 +12,7 @@ public class Course {
     private CourseLevelType courseLevelType;
 
     public Course(String courseName, CourseLevelType courseLevelType) {
+        assignments = new ArrayList<>();
         this.courseName = courseName;
         this.courseLevelType = courseLevelType;
     }
