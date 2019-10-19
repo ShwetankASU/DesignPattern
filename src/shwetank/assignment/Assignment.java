@@ -5,6 +5,7 @@ import shwetank.reminder.NodeVisitor;
 import shwetank.reminder.Reminder;
 
 import java.util.Date;
+//Visitor Design Pattern
 
 public class Assignment implements Reminder {
     private String assignmentText;

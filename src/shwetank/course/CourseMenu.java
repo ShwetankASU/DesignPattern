@@ -1,5 +1,6 @@
 package shwetank.course;
-
+//Bridge Design Pattern
+//Factory Design Pattern
 public abstract class CourseMenu {
 
     public abstract void showAddButton();

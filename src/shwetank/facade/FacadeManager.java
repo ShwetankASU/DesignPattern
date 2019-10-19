@@ -1,7 +1,7 @@
 package shwetank.facade;
 
 import shwetank.person.UserInfoItem;
-
+//Facade Design Pattern
 public interface FacadeManager {
 
     boolean doLogin(String userName, String password);

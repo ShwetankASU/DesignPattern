@@ -1,5 +1,6 @@
 package shwetank.course;
-
+//Bridge Design Pattern
+//Factory Design Pattern
 public class HighLevelCourseMenu extends CourseMenu {
 
     @Override

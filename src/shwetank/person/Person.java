@@ -5,7 +5,8 @@ import shwetank.course.CourseMenu;
 import shwetank.enums.CourseLevelEnum;
 
 import java.util.ArrayList;
-
+//Bridge Design Pattern
+//Factory Design Pattern
 public abstract class Person {
 
     private CourseMenu mCourseMenu;

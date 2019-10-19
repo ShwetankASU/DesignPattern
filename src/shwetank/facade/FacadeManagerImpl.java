@@ -8,6 +8,8 @@ import shwetank.enums.CourseLevelEnum;
 import shwetank.enums.UserType;
 import shwetank.factory.AssignmentMenuFactory;
 import shwetank.factory.PersonFactory;
+import shwetank.iterator.ClassCourseList;
+import shwetank.iterator.CourseIterator;
 import shwetank.iterator.SolutionIterator;
 import shwetank.iterator.SolutionList;
 import shwetank.login.Login;
@@ -21,6 +23,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+//Facade Design Pattern
 public class FacadeManagerImpl implements FacadeManager {
     private UserType mUserType;
     private Course mSelectedCourse;
@@ -94,7 +97,7 @@ public class FacadeManagerImpl implements FacadeManager {
     public void invalidate() {
         mUserType = null;
         mSelectedCourse = null;
-        mCourseLevelEnum  = null;
+        mCourseLevelEnum = null;
         mCourseList = new ArrayList(0);
         mPerson = null;
         mLogin = null;
@@ -104,7 +107,7 @@ public class FacadeManagerImpl implements FacadeManager {
     @Override
     public void viewAssignment() {
         Assignment assignment = selectAssignmentFromCourse(mSelectedCourse, mSelectedCourse.getAssignments());
-        if(assignment == null) {
+        if (assignment == null) {
             return;
         }
         AssignmentMenuFactory assignmentMenuFactory = new AssignmentMenuFactory();
@@ -116,7 +119,7 @@ public class FacadeManagerImpl implements FacadeManager {
         print("Select any assignment");
         if (assignments.size() > 0) {
             for (int index = 0; index < assignments.size(); index++) {
-                print( (index+1) +")" + assignments.get(index).getAssignmentText());
+                print((index + 1) + ")" + assignments.get(index).getAssignmentText());
             }
             print("Please select any one assignment:");
             Scanner scanner = new Scanner(System.in);
@@ -129,7 +132,7 @@ public class FacadeManagerImpl implements FacadeManager {
 
     @Override
     public void gradeSolution() {
-        if(mUserType == UserType.INSTRUCTOR) {
+        if (mUserType == UserType.INSTRUCTOR) {
             print("Enter the Solution:");
             Scanner scanner = new Scanner(System.in);
             String providedSolution = scanner.next();
@@ -143,20 +146,20 @@ public class FacadeManagerImpl implements FacadeManager {
 
     @Override
     public void reportSolutions() {
-        if(mUserType == UserType.INSTRUCTOR) {
+        if (mUserType == UserType.INSTRUCTOR) {
 
             Solution solution = null;
             SolutionList solutionList = mSelectedCourse.getAssignments().get(0).getSolutionList();
             SolutionIterator iterator = new SolutionIterator(solutionList);
-            while(iterator.hasNext()) {
+            while (iterator.hasNext()) {
                 solution = solutionList.arrayList.get(iterator.getCurrentIndex());
-                if(solution.isGraded()) {
+                if (solution.isGraded()) {
                     solution.reportSolution();
                     break;
                 }
                 iterator.next();
             }
-            if(solution == null){
+            if (solution == null) {
                 return;
             }
             if (solution.isReported()) {
@@ -168,7 +171,7 @@ public class FacadeManagerImpl implements FacadeManager {
 
     @Override
     public void submitSolution() {
-        if(mUserType == UserType.STUDENT) {
+        if (mUserType == UserType.STUDENT) {
             print("Please Press 1 to Submit Assignment:");
             Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
@@ -188,13 +191,13 @@ public class FacadeManagerImpl implements FacadeManager {
         mSelectedCourse.getAssignments().get(0).addNodeVisitor(mVisitor);
     }
 
-    private void selectCourse(List courseList) {
+    private void selectCourse(List<Course> courseList) {
         int number = getSelectedCourse(courseList);
         if (number == 0) {
             return;
         }
         if (courseList.size() >= number) {
-            mSelectedCourse = (Course) courseList.get(number - 1);
+            mSelectedCourse = courseList.get(number - 1);
             if (mSelectedCourse.getCourseName().contains("890") || mSelectedCourse.getCourseName().contains("880")) {
                 mCourseLevelEnum = CourseLevelEnum.HIGH;
             } else {
@@ -205,13 +208,15 @@ public class FacadeManagerImpl implements FacadeManager {
         }
     }
 
-    private int getSelectedCourse(List list) {
+    private int getSelectedCourse(List<Course> list) {
+        ClassCourseList classCourseList = new ClassCourseList(list);
+        CourseIterator iterator = new CourseIterator(classCourseList);
         print("Course List:");
-        for (int i = 0; i < list.size(); i++) {
-            Course course = (Course) list.get(i);
-            print((i + 1) + ")" + course.getCourseName());
+        while (iterator.hasNext()) {
+            int index = iterator.getCurrentIndex();
+            Course course = (Course) iterator.next();
+            print((index + 1) + ")" + course.getCourseName());
         }
-        print("Please select any one course or Press 0 to exit");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }

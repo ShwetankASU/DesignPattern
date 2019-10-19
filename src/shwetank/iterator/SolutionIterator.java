@@ -1,5 +1,6 @@
 package shwetank.iterator;
 
+//Iterator Design Pattern
 
 public class SolutionIterator extends ListIterator {
 
