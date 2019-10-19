@@ -8,15 +8,6 @@ import shwetank.person.Teacher;
 public class PersonFactory {
 
     public Person getPerson(UserType userType){
-        Person person = null;
-        switch (userType){
-            case STUDENT:
-                person = new Student();
-                break;
-            case TEACHER:
-                person = new Teacher();
-                break;
-        }
-        return person;
+        return userType == UserType.STUDENT ? new Student() : new Teacher();
     }
 }

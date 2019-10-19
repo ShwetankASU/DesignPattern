@@ -1,7 +1,5 @@
 package shwetank.iterator;
 
-import shwetank.iterator.list.ArrayList;
-
 public abstract class ListIterator {
 
     ArrayList list;
@@ -14,6 +12,7 @@ public abstract class ListIterator {
     public abstract boolean hasNext();
     public abstract Object next();
     public abstract void moveToHead();
+    public abstract int getCurrentIndex();
     public abstract void remove();
 
 }

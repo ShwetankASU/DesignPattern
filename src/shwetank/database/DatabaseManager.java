@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DatabaseManager {
 
-    DatabaseManagerImpl.User verifyUser(String userName, String password);
-    void createUser(UserInfoItem userInfoItem) throws Exception;
+    DatabaseManagerImpl.User verifyCredentials(String userName, String password);
+    void createUser(UserInfoItem userInfoItem);
     List<Course> getCourseList();
 }

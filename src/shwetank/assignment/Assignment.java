@@ -1,13 +1,16 @@
 package shwetank.assignment;
 
-import shwetank.iterator.list.SolutionList;
+import shwetank.iterator.SolutionList;
+import shwetank.reminder.NodeVisitor;
+import shwetank.reminder.Reminder;
 
 import java.util.Date;
 
-public class Assignment {
+public class Assignment implements Reminder {
     private String assignmentText;
     private SolutionList solutionList;
     private Date dueDate;
+    private boolean isSubmitted;
 
     public Assignment(String assignmentText, Date dueDate) {
         this.assignmentText = assignmentText;
@@ -30,11 +33,20 @@ public class Assignment {
         this.assignmentText = assignmentText;
     }
 
-    public Date getDueDate() {
+    Date getDueDate() {
         return dueDate;
     }
 
     public void setDueDate(Date dueDate){
         this.dueDate = dueDate;
+    }
+
+    public void submitAssignment() { this.isSubmitted = true; }
+
+    boolean isAssignmentSubmitted() { return this.isSubmitted; }
+
+    @Override
+    public void addNodeVisitor(NodeVisitor nodeVisitor) {
+        nodeVisitor.visitAssignment(this);
     }
 }

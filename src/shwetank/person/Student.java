@@ -1,7 +1,7 @@
 package shwetank.person;
 
 import shwetank.course.CourseMenu;
-import shwetank.enums.CourseLevelType;
+import shwetank.enums.CourseLevelEnum;
 import shwetank.enums.UserType;
 import shwetank.factory.CourseFactory;
 
@@ -16,9 +16,9 @@ public class Student extends Person {
     }
 
     @Override
-    public CourseMenu createCourseMenu(CourseLevelType courseLevelType) {
-        CourseMenu courseMenu = new CourseFactory().getCourseMenu(UserType.STUDENT, courseLevelType);
-        updateCourseLevel(courseMenu);
+    public CourseMenu createCourseMenu(CourseLevelEnum courseLevelEnum) {
+        CourseMenu courseMenu = new CourseFactory().getCourseMenu(UserType.STUDENT, courseLevelEnum);
+        updateMenu(courseMenu);
         return courseMenu;
     }
 

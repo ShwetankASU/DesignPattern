@@ -2,18 +2,17 @@ package shwetank.person;
 
 import shwetank.course.Course;
 import shwetank.course.CourseMenu;
-import shwetank.enums.CourseLevelType;
+import shwetank.enums.CourseLevelEnum;
 
 import java.util.ArrayList;
 
 public abstract class Person {
 
     private CourseMenu mCourseMenu;
-    private ArrayList<Course> courseList = new ArrayList<>();
 
-    Person() {
+    private ArrayList<Course> mCourseList = new ArrayList<>();
 
-    }
+    public abstract void showMenu();
 
     void showAddButton() {
         mCourseMenu.showAddButton();
@@ -35,19 +34,18 @@ public abstract class Person {
         mCourseMenu.showComBoxes();
     }
 
-    void updateCourseLevel(CourseMenu courseMenu) {
+    void updateMenu(CourseMenu courseMenu) {
         this.mCourseMenu = courseMenu;
     }
 
-    public abstract void showMenu();
+    public abstract CourseMenu createCourseMenu(CourseLevelEnum courseLevelEnum);
 
-    public abstract CourseMenu createCourseMenu(CourseLevelType courseLevelType);
-
-    public void addCourse(Course course){
-        courseList.add(course);
+    public void addCourse(Course course) {
+        mCourseList.add(course);
     }
-    public void removeCourse(Course course){
-        courseList.remove(course);
+
+    public void removeCourse(Course course) {
+        mCourseList.remove(course);
     }
 
 }

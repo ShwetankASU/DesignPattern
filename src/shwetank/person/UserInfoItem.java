@@ -3,25 +3,25 @@ package shwetank.person;
 import shwetank.enums.UserType;
 
 public class UserInfoItem {
-    private UserType userType;
-    private String userName;
-    private String password;
+    private UserType mUserType;
+    private String mUserName;
+    private String mPassword;
 
     public UserInfoItem(UserType userType, String userName, String password){
-        this.userType = userType;
-        this.userName = userName;
-        this.password = password;
+        this.mUserType = userType;
+        this.mUserName = userName;
+        this.mPassword = password;
     }
 
     public UserType getUserType(){
-        return userType;
+        return mUserType;
     }
 
     public String getUserName() {
-        return userName;
+        return mUserName;
     }
 
     public String getPassword() {
-        return password;
+        return mPassword;
     }
 }

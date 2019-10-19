@@ -1,4 +1,4 @@
-package shwetank.iterator.list;
+package shwetank.iterator;
 
 import shwetank.solution.Solution;
 

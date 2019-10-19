@@ -1,5 +1,5 @@
 package shwetank.reminder;
 
-public class Reminder {
-
+public interface Reminder {
+    void addNodeVisitor(NodeVisitor visitor);
 }

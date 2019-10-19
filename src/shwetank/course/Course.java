@@ -1,20 +1,22 @@
 package shwetank.course;
 
 import shwetank.assignment.Assignment;
-import shwetank.enums.CourseLevelType;
+import shwetank.enums.CourseLevelEnum;
+import shwetank.reminder.NodeVisitor;
+import shwetank.reminder.Reminder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Course {
+public class Course implements Reminder {
     private String courseName;
     private List<Assignment> assignments;
-    private CourseLevelType courseLevelType;
+    private CourseLevelEnum courseLevelEnum;
 
-    public Course(String courseName, CourseLevelType courseLevelType) {
+    public Course(String courseName, CourseLevelEnum courseLevelEnum) {
         assignments = new ArrayList<>();
         this.courseName = courseName;
-        this.courseLevelType = courseLevelType;
+        this.courseLevelEnum = courseLevelEnum;
     }
 
     public String getCourseName() {
@@ -29,7 +31,12 @@ public class Course {
         assignments.add(assignment);
     }
 
-    public CourseLevelType getCourseLevel(){
-        return courseLevelType;
+    public CourseLevelEnum getCourseLevel(){
+        return courseLevelEnum;
+    }
+
+    @Override
+    public void addNodeVisitor(NodeVisitor visitor) {
+        visitor.visitCourse(this);
     }
 }

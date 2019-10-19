@@ -1,31 +1,38 @@
 package shwetank.solution;
 
 public class Solution {
-    private String solution;
-    private int grade;
-    private boolean isGraded = false;
+    private String mSolution;
+    private int mGrade;
+    private boolean mIsGraded = false;
+    private boolean mIsReported = false;
 
-    public Solution(String solution){
-        this.solution = solution;
+    public Solution(String solution) {
+        mSolution = solution;
     }
 
-    public String getSolution(){
-        return solution;
+    public String getSolution() {
+        return mSolution;
     }
 
     public int getGrade() {
-        return grade;
+        return mGrade;
     }
 
     public void setGrade(int grade) {
-        this.grade = grade;
+        mIsGraded = true;
+        mGrade = grade;
     }
 
     public boolean isGraded() {
-        return isGraded;
+        return mIsGraded;
     }
 
-    public void setGraded(boolean graded) {
-        isGraded = graded;
+    public boolean isReported() {
+        return mIsReported;
     }
+
+    public void reportSolution() {
+        mIsReported = true;
+    }
+
 }

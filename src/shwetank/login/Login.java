@@ -4,13 +4,13 @@ import shwetank.database.DatabaseManager;
 import shwetank.database.DatabaseManagerImpl;
 
 public class Login {
+    private DatabaseManager mDatabaseManager;
 
-    private DatabaseManager databaseManager;
-
-    public Login(DatabaseManager databaseManager){
-        this.databaseManager = databaseManager;
+    public Login(DatabaseManager databaseManager) {
+        this.mDatabaseManager = databaseManager;
     }
-    public DatabaseManagerImpl.User verifyUser(String userName, String password) {
-        return databaseManager.verifyUser(userName, password);
+
+    public DatabaseManagerImpl.User verifyCredentials(String userName, String password) {
+        return mDatabaseManager.verifyCredentials(userName, password);
     }
 }

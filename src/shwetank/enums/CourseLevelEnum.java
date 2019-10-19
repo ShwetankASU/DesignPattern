@@ -1,6 +1,6 @@
 package shwetank.enums;
 
-public enum CourseLevelType {
+public enum CourseLevelEnum {
     HIGH,
     LOW
 }

@@ -1,8 +1,6 @@
 package shwetank.iterator;
 
 
-import shwetank.iterator.list.ArrayList;
-
 public class CourseIterator extends ListIterator {
 
     public CourseIterator(ArrayList list) {
@@ -11,12 +9,15 @@ public class CourseIterator extends ListIterator {
 
     @Override
     public boolean hasNext() {
-        return list.list.size() > currentIndex;
+        return list.arrayList.size() > currentIndex;
     }
 
     @Override
     public Object next() {
-        Object object = list.list.get(currentIndex);
+        if(!hasNext()){
+            return null;
+        }
+        Object object = list.arrayList.get(currentIndex);
         currentIndex = currentIndex + 1;
         return object;
     }
@@ -27,7 +28,12 @@ public class CourseIterator extends ListIterator {
     }
 
     @Override
+    public int getCurrentIndex() {
+        return currentIndex;
+    }
+
+    @Override
     public void remove() {
-        list.list.remove(currentIndex);
+        list.arrayList.remove(currentIndex);
     }
 }
