@@ -5,7 +5,7 @@ import shwetank.enums.CourseLevelEnum;
 import shwetank.enums.UserType;
 import shwetank.factory.CourseFactory;
 
-public class Teacher extends Person {
+public class Instructor extends Person {
 
     @Override
     public void showMenu() {
